@@ -11,12 +11,13 @@ if(isset($_SESSION["user"])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Form</title>
+    <title>signup</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="container">
+
 <?php
 
 
@@ -75,6 +76,7 @@ if(isset($_POST['submit'])){
             mysqli_stmt_bind_param($stmt,"sss",$fullName, $email, $passwordHash);
             mysqli_stmt_execute($stmt);
             echo "<div class='alert alert-success'>You are registered successfully.</div>";
+            header("location: index.php");
         }else{
             die("somthing wrong");
         }
@@ -83,6 +85,7 @@ if(isset($_POST['submit'])){
     }
 }
 ?>
+        <h1 class="text-center my-4">signup</h1>
 
         <form action="registration.php" method="post">
             <div class="form-group">
@@ -102,7 +105,7 @@ if(isset($_POST['submit'])){
             </div>
         </form>
         <div>
-        <div><p>Already Regisddtered <a href="login.php">Login Here</a></p></div>
+        <div><p>Have an account? <a href="login.php">Login Here</a></p></div>
       </div>
     </div>
 </body>

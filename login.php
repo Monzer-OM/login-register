@@ -11,12 +11,13 @@ if(isset($_SESSION["user"])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login form</title>
+    <title>Login</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
+    <h1 class="text-center my-4">Login</h1>
 
     <?php
     if (isset($_POST["login"])) {
@@ -30,7 +31,7 @@ if(isset($_SESSION["user"])){
         if ($user) {
             if (password_verify($password, $user["password"])) {
                 session_start();
-                $_SESSION["user"] = "yes";
+                $_SESSION["user"] = $user["fullname"];
                 header("location: index.php");
                 die();  
             } else {
