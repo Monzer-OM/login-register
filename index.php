@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +10,10 @@
 </head>
 <body>
         <h1 class="text-center my-4">Available Homes</h1>
+
+        <div class="d-flex justify-content-end mb-4">
+            <a href="logout.php" class="btn btn-danger">Logout</a>
+        </div>
 
 
 
