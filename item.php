@@ -24,18 +24,21 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container mt-4">
         <div class="row">
             <div class="col-md-6">
                 <?php
                 if (isset($home['photo']) && !empty($home['photo'])) {
-                    $imageUrl = 'uploads/' . $home['photo'];
+                    $imageUrl =  $home['photo'];
                     if (file_exists($imageUrl)) {
                         echo '<img src="' . htmlspecialchars($imageUrl) . '" class="img-fluid" alt="' . htmlspecialchars($home['title']) . '">';
                     } else {
                         echo '<img src="uploads/defaulttt.jpg" class="img-fluid" alt="Default Image">';
+                        echo '<p>Debug: File does not exist - ' . htmlspecialchars($imageUrl) . '</p>'; // Debugging line
                     }
                 } else {
-                    echo '<img src="uploads/default.jpg" class="img-fluid" alt="Default Image">';
+                    echo '<img src="uploads/defalut.jpg" class="img-fluid" alt="Default Image">';
+                    echo '<p>Debug: No photo provided.</p>'; // Debugging line
                 }
                 ?>
             </div>
@@ -48,6 +51,7 @@ if (isset($_GET['id'])) {
                 <p><strong>Type:</strong> <?php echo ucfirst(htmlspecialchars($home['type'])); ?></p>
             </div>
         </div>
+    </div>
 </body>
 </html>
 <?php
