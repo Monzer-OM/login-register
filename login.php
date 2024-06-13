@@ -51,28 +51,42 @@ if(isset($_SESSION["user"])){
             <h1 class="text-center mb-4">Real Estate Site Login</h1>
 
             <?php
-            if (isset($_POST["login"])) {
-                $email = $_POST['email'];
-                $password = $_POST['password'];
-                require_once 'database.php';
-                $sql = "SELECT * FROM users WHERE email = '$email'";
-                $result = mysqli_query($conn, $sql);
-                $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+if (isset($_POST["login"])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    require_once 'database.php';
+    $sql = "SELECT * FROM users WHERE email = '$email'";
+    $result = mysqli_query($conn, $sql);
+    $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-                if ($user) {
-                    if (password_verify($password, $user["password"])) {
-                        session_start();
-                        $_SESSION["user"] = $user["fullname"];
-                        header("location: index.php");
-                        die();  
-                    } else {
-                        echo "<div class='alert alert-danger'>Credentials do not match!</div>";
-                    }
-                } else {
-                    echo "<div class='alert alert-danger'>Credentials do not match!</div>";
-                }
-            }
-            ?>
+    if ($user) {
+        // Check if the credentials are for the admin
+        if ($email === 'Admin@admin.com' && $password === 'admin123') {
+            session_start();
+            $_SESSION["user"] = $user["fullname"];
+            $_SESSION['admin_logged_in'] = true;
+
+            header("location: adminDashboard.php");
+            die();
+        } 
+        // Check if the password matches the hashed password in the database
+        elseif (password_verify($password, $user["password"])) {
+            session_start();
+            $_SESSION["user"] = $user["fullname"];
+            header("location: index.php");
+            die();
+        } 
+        // If password doesn't match
+        else {
+            echo "<div class='alert alert-danger'>The information didn't match!</div>";
+        }
+    } 
+    // If no user found with the provided email
+    else {
+        echo "<div class='alert alert-danger'>The information didn't match!</div>";
+    }
+}
+?>
 
             <form action="login.php" method="post">
                 <div class="form-group">
