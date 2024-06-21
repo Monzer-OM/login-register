@@ -25,7 +25,7 @@ $result = mysqli_query($conn, $sql);
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container mt-4">
+    <div class="container mt-4" style="max-width: 650px;">
         <h1>Admin Dashboard</h1>
         <a href="addHome.php" class="btn btn-primary mb-3">Add Home</a>
         <a href="logout.php" class="btn btn-danger mb-3">Logout</a>

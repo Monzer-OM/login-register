@@ -28,6 +28,8 @@ if(isset($_SESSION["user"])){
             padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
         }
         .form-control {
             margin-bottom: 1rem;
@@ -48,7 +50,7 @@ if(isset($_SESSION["user"])){
 <body>
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
         <div class="login-container">
-            <h1 class="text-center mb-4">Real Estate Site Login</h1>
+            <h1 class="text-center mb-4">Login</h1>
 
             <?php
 if (isset($_POST["login"])) {
